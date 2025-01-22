@@ -198,7 +198,7 @@ Values:
 #### Override the window current colors:
 ```sh
 set -g @catppuccin_window_current_color "#{thm_orange}" # text color
-set -g @catppuccin_window_current_background "#{thm_bg}"
+set -g @catppuccin_window_current_background "#{thm_light_gray}"
 ```
 Note that color and background fields are swapped when `@catppuccin_window_current_fill` is set to "all".
 
