@@ -15,6 +15,20 @@
   <img src="./assets/preview.webp"/>
 </p>
 
+## Fork
+
+This is my personal fork of [catppuccin/tmux](https://github.com/catppuccin/tmux). It exists for
+three main reasons:
+
+- You can't have installed several tmux plugins named `tmux` (like this one and 
+[rose-pine/tmux](https://github.com/rose-pine/tmux)) at the same time. This is an issue for me as
+I want to be able to quickly switch between different themes without re-installing them.
+
+- I don't want to update this plugin beyond version `0.3.0` as I'm quite happy with it and don't
+want to bring the breaking changes which were made after it.
+
+- This enables additional customization possibilities.
+
 ## Content
 
 1. [Themes](#themes)
