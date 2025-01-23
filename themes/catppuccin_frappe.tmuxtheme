@@ -15,6 +15,3 @@ thm_yellow="#e5c890"
 thm_blue="#8caaee"
 thm_orange="#ef9f76"
 thm_black4="#626880"
-
-# --> New colors taken from the palette (https://catppuccin.com/palette)
-thm_light_gray="#51576d" # Surface 1
