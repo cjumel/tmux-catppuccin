@@ -1,5 +1,4 @@
-#!/bin/sh
-
+#!/bin/bash
 
 show_window_status=
 
@@ -142,9 +141,7 @@ build_window_icon() {
   # meaning 2 calls to build_window_icon wich will/should both return the same
   # result.
   if [ -z "$show_window_status" ]; then
-    local custom_icon_window_last \
-      custom_icon_window_zoom custom_icon_window_mark custom_icon_window_mark \
-      custom_icon_window_silent custom_icon_window_activity custom_icon_window_bell
+    local custom_icon_window_last custom_icon_window_zoom
 
     # shellcheck disable=SC2034
     local tmux_batch_options_commands=()
@@ -161,24 +158,15 @@ build_window_icon() {
 
     run_tmux_batch_commands
 
-    custom_icon_window_last=$(get_tmux_batch_option "@catppuccin_icon_window_last" "󰖰")
-    custom_icon_window_current=$(get_tmux_batch_option "@catppuccin_icon_window_current" "󰖯")
-    custom_icon_window_zoom=$(get_tmux_batch_option "@catppuccin_icon_window_zoom" "󰁌")
-    custom_icon_window_mark=$(get_tmux_batch_option "@catppuccin_icon_window_mark" "󰃀")
-    custom_icon_window_silent=$(get_tmux_batch_option "@catppuccin_icon_window_silent" "󰂛")
-    custom_icon_window_activity=$(get_tmux_batch_option "@catppuccin_icon_window_activity" "󱅫")
-    custom_icon_window_bell=$(get_tmux_batch_option "@catppuccin_icon_window_bell" "󰂞")
+    custom_icon_window_last=$(get_tmux_batch_option "@catppuccin_icon_window_last" "-")
+    custom_icon_window_current=$(get_tmux_batch_option "@catppuccin_icon_window_current" "*")
+    custom_icon_window_zoom=$(get_tmux_batch_option "@catppuccin_icon_window_zoom" "Z")
 
     if [ "$window_status" = "icon" ]; then
       # icon order: #!~[*-]MZ
       show_window_status=""
-      show_window_status+="#{?window_activity_flag,$(prepend_separator "${custom_icon_window_activity}"),}"
-      show_window_status+="#{?window_bell_flag,$(prepend_separator "${custom_icon_window_bell}"),}"
-      show_window_status+="#{?window_silence_flag,$(prepend_separator "${custom_icon_window_silent}"),}"
-      show_window_status+="#{?window_active,$(prepend_separator "${custom_icon_window_current}"),}"
-      show_window_status+="#{?window_last_flag,$(prepend_separator "${custom_icon_window_last}"),}"
-      show_window_status+="#{?window_marked_flag,$(prepend_separator "${custom_icon_window_mark}"),}"
-      show_window_status+="#{?window_zoomed_flag,$(prepend_separator "${custom_icon_window_zoom}"),}"
+      show_window_status+="#{?window_active,${custom_icon_window_current},#{?window_last_flag,${custom_icon_window_last}, }}"
+      show_window_status+="#{?window_zoomed_flag,${custom_icon_window_zoom},}"
     elif [ "$window_status" = "text" ]; then
       show_window_status=" #F"
     fi
